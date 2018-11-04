@@ -1,0 +1,36 @@
+To add namespace in the system
+# ip netns add <name>
+
+To create a veth pair
+# ip link add <interface-name> type veth peer name <other-end-name>
+
+To add default route to a VM
+# ip route add default via <ip of nexthop (gateway)> dev <interface name>
+
+To attact interface to namespace
+# ip link set <interface name> netns <namespace name>
+
+To run a command from namespace
+# ip netns exec <namespace name> bash/command
+
+Attach VM to a bridge
+# virsh attach-interface --domain <name of vm> --type bridge --source <name of bridge> --model virtio --config --live
+
+Set a xml for the bridge to create and define the network
+# virsh net-define <bridgeconfig.xml>
+
+start the network
+# virsh net-start <bridgename>
+
+add that bridge for that network as it is not by default added
+# brctl addbr <bridgename>
+
+set all the interfaces created up
+# ip link set <bridgename/interface name> up
+
+note: make sure to uop every interface also any interface attached on a namspace has to be set up from within the namespace
+
+create vm command
+#
+
+#

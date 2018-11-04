@@ -35,3 +35,12 @@ create vm command
 
 To check VM's interface list
 #virsh domiflist <vm name>
+
+To add the existing interface to a bridge
+#brctl addif <bridgename> <interface name>
+
+To delete the interface in the bridge
+#brctl delif <bridgename> <interface name>
+
+To delete a default route
+#ip route del default via <ip> dev <interface name>

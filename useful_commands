@@ -33,4 +33,5 @@ note: make sure to uop every interface also any interface attached on a namspace
 create vm command
 #
 
-#
+To check VM's interface list
+#virsh domiflist <vm name>

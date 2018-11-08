@@ -19,11 +19,11 @@ with open('customer.json', 'r') as f:
 	jsonInfos = _byteify(
         json.load(f, object_hook=_byteify),
         ignore_dicts=True
-    )
+	)
 	#print json.dumps(jsonInfos['VPC'][0]['VPC-name'], sort_keys=True, indent=4)
 	for i in range(0, len(['VPC'])+1):
 		print(jsonInfos['VPC'][i]['VPC-name'])
 		
 		
-https://stackoverflow.com/questions/35403769/how-to-read-json-file-using-ansible
-https://docs.ansible.com/ansible/latest/user_guide/playbooks_filters.html#json-query-filter
+#https://stackoverflow.com/questions/35403769/how-to-read-json-file-using-ansible
+#https://docs.ansible.com/ansible/latest/user_guide/playbooks_filters.html#json-query-filter

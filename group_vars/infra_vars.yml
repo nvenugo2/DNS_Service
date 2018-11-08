@@ -1,0 +1,6 @@
+---
+# file: group_vars/infra_vars.yml
+Number_of_VPC: 2
+Name_of_VPC: VPC1, VPC2
+Number_of_subnet: 3
+Name_of_subnet: VPC1Sub1, VPC1Sub1, VPC2Sub2

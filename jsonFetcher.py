@@ -20,10 +20,26 @@ with open('customer.json', 'r') as f:
         json.load(f, object_hook=_byteify),
         ignore_dicts=True
 	)
-	#print json.dumps(jsonInfos['VPC'][0]['VPC-name'], sort_keys=True, indent=4)
-	for i in range(0, len(['VPC'])+1):
-		print(jsonInfos['VPC'][i]['VPC-name'])
-		
-		
-#https://stackoverflow.com/questions/35403769/how-to-read-json-file-using-ansible
-#https://docs.ansible.com/ansible/latest/user_guide/playbooks_filters.html#json-query-filter
+	level1 = {}
+	level2 = {}
+	level3 = {}
+	f = open("projectLog.txt","w")
+	for i in range(0,len(['VPC'])):
+		for k,v in jsonInfos.items():
+			for m in range(0, len(v)):
+				level1 = v[m]
+				for k,x in level1.items():
+					if type(x[m]) != str:
+						print("-------------------------------")
+						for t in range(0, len(x)):
+							level2 = x[t]
+							for k,g in level2.items():
+								if type(g) != str:
+									for p in range(0, len(g)):
+										level3 = g[p]
+										for k,s in level3.items():
+											print(k+" : "+s)
+								else:
+									print(k+" : "+g)
+					else:
+						print(k+" : "+x)

@@ -1,0 +1,5 @@
+# Our Flow and questions :
+Customer will need VM's with desired IP or not.
+We will fetch MAC of all the VM's using dumpxml virsh dumpxml $VM-NAME | grep 'MAC'
+We will change qemu/libvirt/network/*.xml IP address in specific subnet for a given MAC. virsh net-edit default*
+Add IP if possible as desired by customer here

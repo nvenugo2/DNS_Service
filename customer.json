@@ -1,56 +1,56 @@
 {
 	"VPC": [   
 		{
-			"VPC-name": "VPC1",
-			"VPC-IP": "10.10.0.0/16",
+			"VPC_name1": "VPC1",
+			"VPC_IP1": "10.10.0.0/16",
 			"Subnet": [
 				{
-					"Subnet-IP": "10.10.1.0/17",
+					"Subnet_IP11": "10.10.1.0/17",
 					"VM": [
 						{
-							"VM-name": "c1Sub1VM1",
-							"VM-IP": "10.10.1.10/17"
+							"VM_name111": "c1Sub1VM1",
+							"VM_IP111": "10.10.1.10/17"
 						},
 						{
-							"VM-name": "c1Sub1VM1",
-							"VM-IP": "10.10.1.20/17"
+							"VM_name112": "c1Sub1VM1",
+							"VM_IP112": "10.10.1.20/17"
 						}
 					]
 				},
 				{
-					"Subnet-IP": "10.10.2.0/17",
+					"Subnet_IP12": "10.10.2.0/17",
 					"VM": [
 						{
-							"VM-name": "c1Sub2VM1",
-							"VM-IP": "10.10.2.10/17"
+							"VM_name121": "c1Sub2VM1",
+							"VM_IP121": "10.10.2.10/17"
 						}
 					]
 				}
 			]
 		},
 		{
-			"VPC-name": "VPC2",
-			"VPC-IP": "10.11.0.0/16",
+			"VPC_name2": "VPC2",
+			"VPC_IP2": "10.11.0.0/16",
 			"Subnet": [
 				{
-					"Subnet-IP": "10.11.1.0/17",
+					"Subnet_IP21": "10.11.1.0/17",
 					"VM": [
 						{
-							"VM-name": "c2Sub1VM1",
-							"VM-IP": "10.11.1.10/17"
+							"VM_name211": "c2Sub1VM1",
+							"VM_IP211": "10.11.1.10/17"
 						}
 					]
 				},
 							{
-					"Subnet-IP": "10.11.2.0/17",
+					"Subnet_IP22": "10.11.2.0/17",
 					"VM": [
 						{
-							"VM-name": "c2Sub2VM1",
-							"VM-IP": "10.11.2.10/17"
+							"VM_name221": "c2Sub2VM1",
+							"VM_IP221": "10.11.2.10/17"
 						},
 						{
-							"VM-name": "c2Sub2VM2",
-							"VM-IP": "10.11.2.20/17"
+							"VM_name222": "c2Sub2VM2",
+							"VM_IP222": "10.11.2.20/17"
 						}
 					]
 				}

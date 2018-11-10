@@ -1,0 +1,21 @@
+---
+
+  - name: create Namespace
+    command: ip netns add "{{ item.value.VPC_name }}"
+    with_dict: "{{ VPC }}"
+
+  - name: create Veth pair
+    command: ip link add "{{ item.value.VPC_name }}_if1" type veth peer name "{{ item.value.VPC_name }}_if2"
+    with_dict: "{{ VPC }}"
+
+  - name: attach veth pair to namespace
+    command: ip link set "{{ item.value.VPC_name }}_if1" netns "{{ item.value.VPC_name }}"
+    with_dict: "{{ VPC }}"
+
+  - name: make interface attached to namespace UP
+    command: ip netns exec "{{ item.value.VPC_name }}" ip link set "{{ item.value.VPC_name }}_if1" up
+    with_dict: "{{ VPC }}"
+
+  - name: make veth interface in host as UP
+    command: ip link set "{{ item.value.VPC_name }}_if2" up
+    with_dict: "{{ VPC }}"

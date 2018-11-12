@@ -19,3 +19,89 @@
   - name: make veth interface in host as UP
     command: ip link set "{{ item.value.VPC_name }}_if2" up
     with_dict: "{{ VPC }}"
+
+  - name: create xml file for first subnets of all VPC
+    command: cp /etc/libvirt/qemu/networks/default.xml /etc/libvirt/qemu/networks/"{{ item.value.Subnet2.Subnet_name}}_{{item.value.VPC_name}}.xml"
+    with_dict: "{{ VPC }}"
+
+  - name: change network name
+    xml:
+      path: /etc/libvirt/qemu/networks/{{ item.value.Subnet2.Subnet_name}}_{{item.value.VPC_name}}.xml
+      xpath: /network/name
+      value: "{{ item.value.Subnet2.Subnet_name}}"
+    with_dict: "{{ VPC }}"
+
+  - name: Set the bridge name
+    xml:
+      path: /etc/libvirt/qemu/networks/{{ item.value.Subnet2.Subnet_name}}_{{item.value.VPC_name}}.xml
+      xpath: /network/bridge
+      attribute: name
+      value: "{{ item.value.Subnet2.Subnet_name}}"
+    with_dict: "{{ VPC }}"
+
+  - name: Set the bridge mode
+    xml:
+      path: /etc/libvirt/qemu/networks/{{ item.value.Subnet2.Subnet_name}}_{{item.value.VPC_name}}.xml
+      xpath: /network/forward
+      attribute: mode
+      value: bridge
+    with_dict: "{{ VPC }}"
+
+  - name: remove stp
+    xml:
+      path: /etc/libvirt/qemu/networks/{{ item.value.Subnet2.Subnet_name}}_{{item.value.VPC_name}}.xml
+      xpath: /network/bridge/@stp
+      state: absent
+    with_dict: "{{ VPC }}"
+
+  - name: remove delay
+    xml:
+      path: /etc/libvirt/qemu/networks/{{ item.value.Subnet2.Subnet_name}}_{{item.value.VPC_name}}.xml
+      xpath: /network/bridge/@delay
+      state: absent
+    with_dict: "{{ VPC }}"
+
+
+  - name: remove uuid atribute
+    xml:
+      path: /etc/libvirt/qemu/networks/{{ item.value.Subnet2.Subnet_name}}_{{item.value.VPC_name}}.xml
+      xpath: /network/uuid
+      state: absent
+    with_dict: "{{ VPC }}"
+
+  - name: remove mac atribute
+    xml:
+      path: /etc/libvirt/qemu/networks/{{ item.value.Subnet2.Subnet_name}}_{{item.value.VPC_name}}.xml
+      xpath: /network/mac
+      state: absent
+    with_dict: "{{ VPC }}"
+
+  - name: remove unnecessory atribute
+    xml:
+      path: /etc/libvirt/qemu/networks/{{ item.value.Subnet2.Subnet_name}}_{{item.value.VPC_name}}.xml
+      xpath: /network/ip
+      state: absent
+    with_dict: "{{ VPC }}"
+
+  - name: net define the bridges
+    command: virsh net-define /etc/libvirt/qemu/networks/{{ item.value.Subnet2.Subnet_name}}_{{item.value.VPC_name}}.xml
+    with_dict: "{{ VPC }}"
+
+  - name: net start the bridges
+    command: virsh net-start "{{ item.value.Subnet2.Subnet_name}}"
+    with_dict: "{{ VPC }}"
+
+  - name: brctl addbr
+    command: brctl addbr "{{ item.value.Subnet2.Subnet_name}}"
+    with_dict: "{{ VPC }}"
+    
+#---------------No use------------------
+#  - name: replace lines in subnet xml files
+#    lineinfile:
+#      destfile: /etc/libvirt/qemu/networks/{{ item.value.Subnet1.Subnet_name}}_{{item.value.VPC_name}}.xml
+#      regexp: "{{ item.regexp }}"
+#      line: "{{ item.line}}"
+#    with_items:
+#      - { regexp: '^default', line: "{{ item.value.Subnet1.Subnet_name }}"}
+#    with_dict: "{{ VPC }}"
+

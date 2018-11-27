@@ -1,0 +1,28 @@
+1. Pull ubuntu image 
+
+2. sudo docker run -itd --privileged --name=test --hostname=test ubuntu -> we are giving host name here itself (because after creating the container we cant change the hostname - for our project)
+
+3. sudo ip link add test1if type veth peer name testif -> creating veth pair
+
+4. sudo ip link set testif netns "xxx" -> moving interface to container -> in "xxx" we have to give the processes num of our container instead of name of the container
+
+5. For getting the process number of conatainer -> sudo docker inspect -f {{.State.Pid}} test
+
+6. Create bridges and veth pairs, all move interfaces, assign ip address etc
+
+7. docker attach test -> to go inside the container
+
+-----------------------------------Modified commands to do same work----------------------------------------
+
+1. docker network create --subnet=172.18.0.0/16 mynet123
+
+2. sudo docker run -itd --privileged --name=test --hostname=test --net mynet123 --ip 172.18.0.22 ubuntu
+docker ps -a
+
+3 Inside docker all this should be installed
+docker attach test
+Sudo apt-get update
+sudo apt-get upgrade
+apt-get install net-tools
+apt-get install iproute2
+apt install inutils-ping

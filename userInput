@@ -7,28 +7,28 @@ VPC:
     VPC_name: VPC1
     Subnet1:
       Subnet_IP: 10.10.1.0/17
-      Subnet_name: linux.com
+      Subnet_name: fb.com
       VM_IP: 10.10.1.10/17
-      VM_name: c1Sub1VM1
+      VM_name: c1S1VM1
       VM_IP: 10.10.1.20/17
-      VM_name: c1Sub1VM2
+      VM_name: c1S1VM2
     Subnet2:
       Subnet_IP: 10.10.2.0/17
-      Subnet_name: cloud.com
+      Subnet_name: cnu.com
       VM_IP: 10.10.2.10/17
-      VM_name: c1Sub2VM1
+      VM_name: c1S2VM1
   VPC2:
     VPC_IP: 10.11.0.0/16
     VPC_name: VPC2
     Subnet1:
       Subnet_IP: 10.11.1.0/17
-      Subnet_name: remote.net
+      Subnet_name: tv.net
       VM_IP: 10.11.1.10/17
-      VM_name: c2Sub1VM1
+      VM_name: c2S1VM1
     Subnet2:
       Subnet_IP: 10.11.2.0/17
-      Subnet_name: desktop.net
+      Subnet_name: fb.net
       VM_IP: 10.11.2.10/17
-      VM_name: c2Sub2VM1
+      VM_name: c2S2VM1
       VM_IP: 10.11.2.20/17
-      VM_name: c2Sub2VM2
+      VM_name: c2S2VM2

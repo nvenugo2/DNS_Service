@@ -14,6 +14,8 @@
 
 8. docker commit <container_name> <new_container_image> (to create a new image from existing docker container)
 
+9. docker exec -it --privileged <name> bash
+
 -----------------------------------Modified commands to do same work----------------------------------------
 
 1. docker network create --subnet=172.18.0.0/16 mynet123
